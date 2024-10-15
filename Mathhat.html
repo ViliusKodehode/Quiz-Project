@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mathhat</title>
+    <h1 style="color:antiquewhite;font-size: 110px;text-align: center;font-family: fantasy;"class="center">Choose your difficulty</h1>
+    <style>
+        body{background-color: rgb(110, 175, 223); 
+        }
+        .center {
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        }
+       form{
+        display: block;
+        margin-left: 35%;
+        margin-top: 30%;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        
+       }
+       select {
+        width: 400px;
+        height: 30px; 
+        font-family:'Franklin Gothic Medium';
+        background-color: rgb(242, 242, 242);
+        margin-bottom: 0%;
+        }
+       botton{
+        width: 300px;
+        height: 50px;
+        font-size: 40px;
+        font-family: fantasy;
+        background-color: rgb(221, 212, 201);
+        display: block;
+        margin-left: 6%;
+        text-align: center;
+       }
+       h1{
+        text-shadow: 1px 5px rgb(211, 32, 32);
+        
+       }
+        #displayText {
+            position: absolute;
+            top: 50%;
+            left: 51%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            font-family: fantasy;
+            border-style: solid;
+            border-width: 20px;
+            border-color: rgb(204, 204, 36);
+            border-radius: 40px;
+            
+        }
+        
+    </style>
+     
+</head>
+<body>
+    <form id="difficultyform">
+        <select name="difficulty" id="difficulty">
+          <option value="Very easy">Very easy</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Insane">Insane</option>
+        </select>
+        <br></br>
+        <botton type="button" value="Confirm" id="confirmbutton">Confirm</botton>
+    </form>
+    <div id="displayText"></div>
+
+    <script>
+        document.getElementById("difficulty").addEventListener("change", function() {
+            var difficulty = this.value;
+
+            var customText = "";
+            if (difficulty === "Very easy") {
+                customText = `
+                    <div style="background-color: antiquewhite; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Very easy difficulty includes:</span>
+                        <br>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+                    </div>
+                `;
+            } else if (difficulty === "Easy") {
+                customText = `
+                    <div style="background-color: antiquewhite; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Easy difficulty includes:</span>
+                        <br>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+                    </div>
+                `;
+            } else if (difficulty === "Medium") {
+                customText = `
+                    <div style="background-color: antiquewhite; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Medium difficulty includes:</span>
+                        <br>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+                    </div>
+                `;
+            } else if (difficulty === "Hard") {
+                customText = `
+                    <div style="background-color: antiquewhite; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Hard difficulty includes:</span>
+                        <br>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
+                    </div>
+                `;
+            } else if (difficulty === "Insane") {
+                customText = `
+                    <div style="background-color: antiquewhite; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Insane difficulty includes:</span>
+                        <br>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+                        <br>
+                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
+                        <br>
+                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Percentage</span>
+                    </div>
+                `;
+            }
+
+            document.getElementById("displayText").innerHTML = customText;
+        
+        });
+        
+    </script>
+    <script>
+        document.getElementById("confirmbutton").addEventListener("click", function(){
+            var difficulty = document.getElementById("difficulty").value;
+
+            var redirectPage = "";
+            if (difficulty === "Very easy") {
+                redirectPage = "Math/Very-easy.html";
+            }else if (difficulty === "Easy") {
+                redirectPage = "Math/Easy.html";
+            }else if (difficulty === "Medium") {
+                redirectPage = "Math/Medium.html";
+            }else if (difficulty === "Hard") {
+                redirectPage = "Math/Hard.html";
+            }else if (difficulty === "Insane") {
+                redirectPage = "Math/Insane.html";
+            }
+             if (redirectPage) {
+                window.location.href = redirectPage;
+            }
+        });     
+    </script>
+    <script>
+    
+        document.getElementById("difficulty").value = "Very easy";
+    
+        document.getElementById("difficulty").dispatchEvent(new Event("change"));
+    </script>
+ </body>  
+</html>
