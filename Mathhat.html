@@ -2,65 +2,12 @@
 <html lang="en">
 <head>
     <title>Mathhat</title>
-    <h1 style="color:antiquewhite;font-size: 110px;text-align: center;font-family: fantasy;"class="center">Choose your difficulty</h1>
-    <style>
-        body{background-color: rgb(110, 175, 223); 
-        }
-        .center {
-        display:block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: auto;
-        }
-       form{
-        display: block;
-        margin-left: 35%;
-        margin-top: 30%;
-        color: rgb(0, 0, 0);
-        font-size: 20px;
-        
-       }
-       select {
-        width: 400px;
-        height: 30px; 
-        font-family:'Franklin Gothic Medium';
-        background-color: rgb(242, 242, 242);
-        margin-bottom: 0%;
-        }
-       botton{
-        width: 300px;
-        height: 50px;
-        font-size: 40px;
-        font-family: fantasy;
-        background-color: rgb(221, 212, 201);
-        display: block;
-        margin-left: 6%;
-        text-align: center;
-       }
-       h1{
-        text-shadow: 1px 5px rgb(211, 32, 32);
-        
-       }
-        #displayText {
-            position: absolute;
-            top: 50%;
-            left: 51%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            font-family: fantasy;
-            border-style: solid;
-            border-width: 20px;
-            border-color: rgb(204, 204, 36);
-            border-radius: 40px;
-            
-        }
-        
-    </style>
-     
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Stylesheet" href="Mathstyles.css">
 </head>
 <body>
+    <h1>Choose your difficulty</h1>
     <form id="difficultyform">
         <select name="difficulty" id="difficulty">
           <option value="Very easy">Very easy</option>
@@ -74,15 +21,16 @@
     </form>
     <div id="displayText"></div>
 
-    <script>
+
+<script>
         document.getElementById("difficulty").addEventListener("change", function() {
             var difficulty = this.value;
 
             var customText = "";
             if (difficulty === "Very easy") {
                 customText = `
-                    <div style="background-color: antiquewhite; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Very easy difficulty includes:</span>
+                    <div style="background-color: white; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Very easy difficulty includes:</span>
                         <br>
                         <br>
                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
@@ -92,8 +40,8 @@
                 `;
             } else if (difficulty === "Easy") {
                 customText = `
-                    <div style="background-color: antiquewhite; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Easy difficulty includes:</span>
+                    <div style="background-color: white; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Easy difficulty includes:</span>
                         <br>
                         <br>
                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
@@ -105,8 +53,8 @@
                 `;
             } else if (difficulty === "Medium") {
                 customText = `
-                    <div style="background-color: antiquewhite; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Medium difficulty includes:</span>
+                    <div style="background-color: white; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Medium difficulty includes:</span>
                         <br>
                         <br>
                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
@@ -120,8 +68,8 @@
                 `;
             } else if (difficulty === "Hard") {
                 customText = `
-                    <div style="background-color: antiquewhite; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Hard difficulty includes:</span>
+                    <div style="background-color: white; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Hard difficulty includes:</span>
                         <br>
                         <br>
                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
@@ -137,8 +85,8 @@
                 `;
             } else if (difficulty === "Insane") {
                 customText = `
-                    <div style="background-color: antiquewhite; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Times New Roman;text-shadow:1px 3px white;">Insane difficulty includes:</span>
+                    <div style="background-color: white; padding: 10px;">
+                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Insane difficulty includes:</span>
                         <br>
                         <br>
                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
@@ -155,13 +103,8 @@
                     </div>
                 `;
             }
-
             document.getElementById("displayText").innerHTML = customText;
-        
         });
-        
-    </script>
-    <script>
         document.getElementById("confirmbutton").addEventListener("click", function(){
             var difficulty = document.getElementById("difficulty").value;
 
@@ -181,12 +124,8 @@
                 window.location.href = redirectPage;
             }
         });     
-    </script>
-    <script>
-    
         document.getElementById("difficulty").value = "Very easy";
-    
         document.getElementById("difficulty").dispatchEvent(new Event("change"));
-    </script>
+</script>
  </body>  
 </html>
