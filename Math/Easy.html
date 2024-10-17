@@ -5,14 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy difficulty</title>
     <link rel="Stylesheet" href="/Mathstyles.css">
+
 </head>
 <body>
-<H1>Easy difficulty</H1>
-<p onclick="redirectToMainMenu()">Return to main meniu</p> 
+<h1>Easy difficulty</h1>
+<p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
+<div id="start-box">
+    <button id="start-game-btn" onclick="startGame()">Start Game</button>
+</div>
+<div id="game-box">
+    <br>
+    <div id="question-box"></div>
+    <br>
+    <input type="number" id="input-answer" placeholder="Your answer" />
+    <br>
+    <div id="timer">Time left: <span id="time">5:00</span></div>
+</div>
+
+    <div id="result-box"></div>
 <script>
-    function redirectToMainMenu() {
-         window.location.href = '../Mathhat.html';
-     }
+function redirectToMainMenu() {
+    window.location.href = '../Mathhat.html';
+    }
+const questions = [
+{question: '11 + 24', answer: 35},
+{question: '54 - 19', answer: 35},
+{question: '12 * 5', answer: 60},
+{question: '98 + 123', answer: 221},
+{question: '250 - 74', answer: 176},
+{question: '16 * 7', answer: 112},
+{question: '44 + 56', answer: 100},
+{question: '120 - 45', answer: 75},
+{question: '6 * 19', answer: 114},
+{question: '77 + 33', answer: 110},
+{question: '213 - 64', answer: 149},
+{question: '15 * 13', answer: 195},
+{question: '97 + 58', answer: 155},
+{question: '145 - 96', answer: 49},
+{question: '17 * 14', answer: 238},
+{question: '32 + 128', answer: 160},
+{question: '189 - 101', answer: 88},
+{question: '12 * 20', answer: 240},
+{question: '75 + 150', answer: 225},
+{question: '243 - 93', answer: 150},
+{question: '8 * 19', answer: 152},
+{question: '88 + 99', answer: 187},
+{question: '145 - 44', answer: 101},
+{question: '23 * 9', answer: 207},
+{question: '63 + 54', answer: 117},
+{question: '200 - 132', answer: 68},
+{question: '14 * 11', answer: 154},
+{question: '119 + 79', answer: 198},
+{question: '220 - 81', answer: 139},
+{question: '6 * 17', answer: 102},
+{question: '43 + 187', answer: 230},
+{question: '158 - 76', answer: 82},
+{question: '9 * 23', answer: 207},
+{question: '78 + 172', answer: 250},
+{question: '197 - 33', answer: 164},
+{question: '15 * 10', answer: 150},
+{question: '132 + 53', answer: 185},
+{question: '250 - 97', answer: 153},
+{question: '7 * 18', answer: 126},
+{question: '61 + 89', answer: 150},
+{question: '204 - 99', answer: 105},
+{question: '19 * 13', answer: 247},
+{question: '142 + 55', answer: 197},
+{question: '125 - 64', answer: 61},
+{question: '5 * 23', answer: 115},
+{question: '123 + 22', answer: 145},
+{question: '188 - 42', answer: 146},
+{question: '18 * 9', answer: 162},
+{question: '250 + 0', answer: 250},
+{question: '210 - 48', answer: 162},
+{question: '13 * 19', answer: 247},
+{question: '99 + 88', answer: 187},
+{question: '198 - 101', answer: 97},
+{question: '14 * 17', answer: 238},
+{question: '177 + 36', answer: 213},
+{question: '155 - 65', answer: 90},
+{question: '11 * 20', answer: 220},
+{question: '78 + 69', answer: 147},
+{question: '120 - 81', answer: 39},
+{question: '22 * 7', answer: 154},
+{question: '102 + 147', answer: 249},
+{question: '194 - 38', answer: 156},
+{question: '21 * 8', answer: 168},
+{question: '45 + 205', answer: 250},
+{question: '167 - 93', answer: 74},
+{question: '9 * 25', answer: 225},
+{question: '131 + 92', answer: 223},
+{question: '160 - 53', answer: 107},
+{question: '17 * 12', answer: 204},
+{question: '89 + 54', answer: 143},
+{question: '230 - 78', answer: 152},
+{question: '4 * 41', answer: 164},
+{question: '58 + 142', answer: 200},
+{question: '147 - 89', answer: 58},
+{question: '14 * 16', answer: 224},
+{question: '65 + 84', answer: 149},
+{question: '217 - 135', answer: 82},
+{question: '12 * 11', answer: 132},
+{question: '125 + 42', answer: 167},
+{question: '203 - 79', answer: 124},
+{question: '18 * 14', answer: 252},
+{question: '90 + 130', answer: 220},
+{question: '250 - 55', answer: 195},
+{question: '21 * 11', answer: 231},
+{question: '110 + 81', answer: 191},
+{question: '144 - 88', answer: 56},
+{question: '7 * 19', answer: 133},
+{question: '63 + 167', answer: 230},
+{question: '145 - 49', answer: 96},
+{question: '22 * 9', answer: 198},
+{question: '71 + 38', answer: 109},
+{question: '200 - 44', answer: 156},
+{question: '14 * 21', answer: 294},
+{question: '150 + 58', answer: 208},
+{question: '199 - 82', answer: 117},
+{question: '17 * 13', answer: 221},
+{question: '93 + 54', answer: 147},
+{question: '183 - 94', answer: 89},
+{question: '9 * 21', answer: 189},
+{question: '84 + 146', answer: 230},
+{question: '152 - 57', answer: 95},
+{question: '13 * 19', answer: 247},
+{question: '142 + 55', answer: 197},
+{question: '105 - 56', answer: 49},
+{question: '12 * 18', answer: 216},
+{question: '45 + 155', answer: 200},
+{question: '210 - 84', answer: 126},
+{question: '21 * 6', answer: 126},
+{question: '109 + 128', answer: 237},
+{question: '184 - 89', answer: 95},
+{question: '16 * 8', answer: 128},
+{question: '56 + 167', answer: 223},
+{question: '143 - 53', answer: 90},
+{question: '15 * 17', answer: 255},
+{question: '99 + 125', answer: 224},
+{question: '246 - 97', answer: 149},
+{question: '7 * 31', answer: 217},
+{question: '68 + 182', answer: 250},
+{question: '199 - 124', answer: 75},
+{question: '12 * 22', answer: 264},
+{question: '89 + 154', answer: 243},
+{question: '145 - 92', answer: 53},
+{question: '18 * 11', answer: 198},
+{question: '123 + 77', answer: 200},
+{question: '194 - 113', answer: 81},
+{question: '13 * 12', answer: 156},
+        
+];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let mistakes = 0;
+        let timer;
+        let timeLeft = 300; 
+        let answerTimeStart;
+    
+        window.onload = function() {
+            document.getElementById("start-game-btn").style.display = "block";
+            document.getElementById("game-box").style.display = "none";
+            document.getElementById("result-box").style.display = "none";
+        };
+        function shuffle(array) { 
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        }
+    
+        function startGame() {
+            document.getElementById("start-game-btn").style.display = "none";
+            document.getElementById("game-box").style.display = "block";
+            shuffle(questions); 
+            loadQuestion();
+            startTimer();
+        }
+    
+        function loadQuestion() {
+            const questionObj = questions[currentQuestionIndex];
+            document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
+            document.getElementById("input-answer").value = '';
+            answerTimeStart = new Date().getTime();
+            document.getElementById("input-answer").focus();
+        }
+    
+        document.getElementById("input-answer").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        });
+    
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("input-answer").value);
+            const correctAnswer = questions[currentQuestionIndex].answer;
+            const currentTime = new Date().getTime();
+            const answerTime = (currentTime - answerTimeStart) / 1000;
+    
+            if (userAnswer === correctAnswer) {
+                correctAnswers++;
+                if (answerTime <= 15) {
+                    score += 20;
+                } else {
+                    score += 10;
+                }
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    loadQuestion();
+                } else {
+                    endGame();
+                }
+            } else {
+                mistakes++;
+                score -= 10;
+                alert("Wrong answer! Try again.");
+                document.getElementById("input-answer").value = '';
+            }
+        }
+    
+        function startTimer() {
+            timer = setInterval(function() {
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                if (seconds < 10) seconds = "0" + seconds;
+                document.getElementById("time").innerText = `${minutes}:${seconds}`;
+    
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+        function endGame() {
+    clearInterval(timer); 
+    document.getElementById("game-box").style.display = "none"; 
+    const resultBox = document.getElementById("result-box"); 
+    resultBox.style.display = "block"; 
+
+    resultBox.innerHTML = `<h2>Game Over</h2>
+                           <p>Your Score: ${score}</p>
+                           <p>Correct Answers: ${correctAnswers}</p>
+                           <p>Mistakes: ${mistakes}</p>
+                           <button id="restart" onclick="restartGame()">Restart Game</button>`; 
+}
+
+function restartGame() {
+    currentQuestionIndex = 0; 
+    score = 0; 
+    correctAnswers = 0; 
+    mistakes = 0; 
+    timeLeft = 300; 
+    document.getElementById("result-box").style.display = "none"; 
+    startGame(); 
+}
 </script>
 </body>
 </html>

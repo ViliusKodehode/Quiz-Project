@@ -8,27 +8,24 @@
 </head>
 <body>
 <h1>Very easy difficulty</h1>
-    <p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
-    <div id="start-box">
-        <button id="start-game-btn" onclick="startGame()">Start Game</button>
-    </div>
-    
-    <div id="game-box">
-        <br>
-        <div id="question-box"></div>
-        <br>
-        <input type="number" id="input-answer" placeholder="Your answer" />
-        <br>
-        <div id="timer">Time left: <span id="time">5:00</span></div>
-    </div>
+<p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
+<div id="start-box">
+    <button id="start-game-btn" onclick="startGame()">Start Game</button>
+</div>
+<div id="game-box">
+    <br>
+    <div id="question-box"></div>
+    <br>
+    <input type="number" id="input-answer" placeholder="Your answer" />
+    <br>
+    <div id="timer">Time left: <span id="time">5:00</span></div>
+</div>
 
     <div id="result-box"></div>
 <script>
     function redirectToMainMenu() {
         window.location.href = '../Mathhat.html';
     }
-</script>
-<script>
     const questions = [
     { question: '9 + 3', answer: 12 },
     { question: '12 - 4', answer: 8 },
@@ -235,7 +232,7 @@
             }
         } else {
             mistakes++;
-            score -= 1;
+            score -= 5;
             alert("Wrong answer! Try again.");
             document.getElementById("input-answer").value = '';
         }
@@ -268,5 +265,41 @@
             <p>Total score: ${score}</p>
         `;
     }
+    function startTimer() {
+            timer = setInterval(function() {
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                if (seconds < 10) seconds = "0" + seconds;
+                document.getElementById("time").innerText = `${minutes}:${seconds}`;
+    
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+        function endGame() {
+    clearInterval(timer); 
+    document.getElementById("game-box").style.display = "none"; 
+    const resultBox = document.getElementById("result-box"); 
+    resultBox.style.display = "block"; 
+
+    resultBox.innerHTML = `<h2>Game Over</h2>
+                           <p>Your Score: ${score}</p>
+                           <p>Correct Answers: ${correctAnswers}</p>
+                           <p>Mistakes: ${mistakes}</p>
+                           <button id="restart" onclick="restartGame()">Restart Game</button>`; 
+}
+
+function restartGame() {
+    currentQuestionIndex = 0; 
+    score = 0; 
+    correctAnswers = 0; 
+    mistakes = 0; 
+    timeLeft = 300; 
+    document.getElementById("result-box").style.display = "none"; 
+    startGame(); 
+}
 </script>
 </body>

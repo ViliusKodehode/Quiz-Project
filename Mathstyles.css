@@ -44,7 +44,7 @@ font-size: 80px;
 #displayText {
     position: absolute;
     top: 45%;
-    left: 50%;
+    left: 49%;
     transform: translate(-50%, -50%);
     font-size: 24px;
     font-weight: bold;
@@ -113,7 +113,20 @@ p.exit {
     font-size: 18px;
     margin-top: 10px;
 }
-    #result-box {
+#result-box {
     font-size: 24px;
     margin-top: 40px;
-    }
+ }
+#restart{
+    width: 300px;
+    color: white;
+    height: 50px;
+    font-size: 40px;
+    font-family: fantasy;
+    background-color: rgb(0, 0, 0);
+    display: block;
+    margin-left: 14%;
+    margin-top:  10%;
+    text-align: center;
+    border-radius: 15px; 
+}
