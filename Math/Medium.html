@@ -4,41 +4,435 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medium difficulty</title>
-    <h1 style="color:antiquewhite;font-size: 110px;text-align: center;font-family: fantasy;"class="center">Medium difficulty</h1>
-    <style>
-        body {
-            background-color: rgb(110, 175, 223);
-        }
-        .center {
-            display:block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: auto;
-        }
-        h1{
-        text-shadow: 1px 5px rgb(211, 32, 32);
-        }
-        p {
-        width: 140px;
-        height: 20px;
-        cursor: pointer;
-        color: black;
-        font-family: fantasy;
-        background-color: antiquewhite;
-        font-size: 14px;
-        text-align: center;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        }
-    </style>
+    <link rel="Stylesheet" href="/Mathstyles.css">
 </head>
 <body>
-    <p onclick="redirectToMainMenu()">Return to main meniu</p> 
-    <script>
-        function redirectToMainMenu() {
-            window.location.href = '../Mathhat.html';
+<h1>Medium difficulty</h1>
+<p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
+<div id="start-box">
+    <button id="start-game-btn" onclick="startGame()">Start Game</button>
+</div>
+<div id="game-box">
+    <br>
+    <div id="question-box"></div>
+    <br>
+    <input type="number" id="input-answer" placeholder="Your answer" />
+    <br>
+    <div id="timer">Time left: <span id="time">5:00</span></div>
+</div>
+    <div id="result-box"></div>
+<script>
+    function redirectToMainMenu() {
+        window.location.href = "../Mathhat.html";
+    }
+    const questions = [
+{question: "582 - 306", answer: 276},
+{question: "445 / 5", answer: 89},
+{question: "416 + 271", answer: 687},
+{question: "861 - 41", answer: 820},
+{question: "370 / 10", answer: 37},
+{question: "448 / 8", answer: 56},
+{question: "222 + 262", answer: 484},
+{question: "384 / 4", answer: 96},
+{question: "237 + 191", answer: 428},
+{question: "460 / 10", answer: 46},
+{question: "432 / 6", answer: 72},
+{question: "386 + 96", answer: 482},
+{question: "35 * 5", answer: 175},
+{question: "211 + 431", answer: 642},
+{question: "160 / 5", answer: 32},
+{question: "447 - 191", answer: 256},
+{question: "36 - 391", answer: -355},
+{question: "263 - 375", answer: -112},
+{question: "265 + 46", answer: 311},
+{question: "132 / 2", answer: 66},
+{question: "641 - 97", answer: 544},
+{question: "57 * 6", answer: 342},
+{question: "203 + 171", answer: 374},
+{question: "171 + 273", answer: 444},
+{question: "25 * 8", answer: 200},
+{question: "39 * 1", answer: 39},
+{question: "45 * 4", answer: 180},
+{question: "492 + 354", answer: 846},
+{question: "435 + 415", answer: 850},
+{question: "33 * 3", answer: 99},
+{question: "477 + 471", answer: 948},
+{question: "344 / 8", answer: 43},
+{question: "149 - 158", answer: -9},
+{question: "410 + 334", answer: 744},
+{question: "376 + 437", answer: 813},
+{question: "61 * 10", answer: 610},
+{question: "829 - 370", answer: 459},
+{question: "20 + 14", answer: 34},
+{question: "57 * 10", answer: 570},
+{question: "254 - 239", answer: 15},
+{question: "711 - 142", answer: 569},
+{question: "66 * 6", answer: 396},
+{question: "304 / 4", answer: 76},
+{question: "591 - 433", answer: 158},
+{question: "39 * 10", answer: 390},
+{question: "926 - 116", answer: 810},
+{question: "34 / 1", answer: 34},
+{question: "270 / 6", answer: 45},
+{question: "340 - 219", answer: 121},
+{question: "917 - 311", answer: 606},
+{question: "440 + 237", answer: 677},
+{question: "180 / 5", answer: 36},
+{question: "11 + 316", answer: 327},
+{question: "308 / 7", answer: 44},
+{question: "126 - 422", answer: -296},
+{question: "140 + 134", answer: 274},
+{question: "24 / 4", answer: 6},
+{question: "220 / 4", answer: 55},
+{question: "89 * 10", answer: 890},
+{question: "395 + 68", answer: 463},
+{question: "490 / 5", answer: 98},
+{question: "473 + 240", answer: 713},
+{question: "28 / 1", answer: 28},
+{question: "82 * 8", answer: 656},
+{question: "60 * 1", answer: 60},
+{question: "392 + 45", answer: 437},
+{question: "850 / 10", answer: 85},
+{question: "689 - 398", answer: 291},
+{question: "313 + 497", answer: 810},
+{question: "212 / 4", answer: 53},
+{question: "815 - 201", answer: 614},
+{question: "434 + 339", answer: 773},
+{question: "72 - 440", answer: -368},
+{question: "427 - 435", answer: -8},
+{question: "356 + 464", answer: 820},
+{question: "83 + 394", answer: 477},
+{question: "260 - 483", answer: -223},
+{question: "383 + 488", answer: 871},
+{question: "201 / 3", answer: 67},
+{question: "42 + 367", answer: 409},
+{question: "5 * 8", answer: 40},
+{question: "200 / 8", answer: 25},
+{question: "50 * 1", answer: 50},
+{question: "415 - 393", answer: 22},
+{question: "352 - 67", answer: 285},
+{question: "528 - 234", answer: 294},
+{question: "90 * 1", answer: 90},
+{question: "15 / 5", answer: 3},
+{question: "700 / 10", answer: 70},
+{question: "24 / 1", answer: 24},
+{question: "94 * 2", answer: 188},
+{question: "140 + 101", answer: 241},
+{question: "116 / 2", answer: 58},
+{question: "374 + 322", answer: 696},
+{question: "335 + 402", answer: 737},
+{question: "540 - 111", answer: 429},
+{question: "424 / 8", answer: 53},
+{question: "564 / 6", answer: 94},
+{question: "66 + 427", answer: 493},
+{question: "55 * 4", answer: 220},
+{question: "516 - 274", answer: 242},
+{question: "397 + 4", answer: 401},
+{question: "160 + 189", answer: 349},
+{question: "259 / 7", answer: 37},
+{question: "18 * 8", answer: 144},
+{question: "292 / 4", answer: 73},
+{question: "136 / 2", answer: 68},
+{question: "338 + 346", answer: 684},
+{question: "9 / 3", answer: 3},
+{question: "10 - 68", answer: -58},
+{question: "0 * 6", answer: 0},
+{question: "88 / 4", answer: 22},
+{question: "813 - 97", answer: 716},
+{question: "92 + 299", answer: 391},
+{question: "144 / 8", answer: 18},
+{question: "336 / 6", answer: 56},
+{question: "525 - 409", answer: 116},
+{question: "290 / 5", answer: 58},
+{question: "407 - 253", answer: 154},
+{question: "58 * 4", answer: 232},
+{question: "281 + 366", answer: 647},
+{question: "15 + 360", answer: 375},
+{question: "10 * 1", answer: 10},
+{question: "112 - 483", answer: -371},
+{question: "96 * 2", answer: 192},
+{question: "320 + 171", answer: 491},
+{question: "596 - 39", answer: 557},
+{question: "74 * 8", answer: 592},
+{question: "55 + 220", answer: 275},
+{question: "234 / 3", answer: 78},
+{question: "245 / 5", answer: 49},
+{question: "59 * 7", answer: 413},
+{question: "48 / 8", answer: 6},
+{question: "252 / 3", answer: 84 },
+{question: "432 + 62", answer: 494},
+{question: "74 * 4", answer: 296},
+{question: "144 / 6", answer: 24},
+{question: "381 + 450", answer: 831},
+{question: "282 / 6", answer: 47},
+{question: "381 + 170", answer: 551},
+{question: "666 / 9", answer: 74},
+{question: "175 + 443", answer: 618},
+{question: "93 + 359", answer: 452},
+{question: "236 + 477", answer: 713},
+{question: "377 + 465", answer: 842},
+{question: "420 / 7", answer: 60},
+{question: "397 + 49", answer: 446},
+{question: "69 + 119", answer: 188},
+{question: "204 / 3", answer: 68},
+{question: "115 + 332", answer: 447},
+{question: "449 - 315", answer: 134},
+{question: "355 / 5", answer: 71},
+{question: "6 / 3", answer: 2},
+{question: "141 / 3", answer: 147},
+{question: "10 + 193", answer: 203},
+{question: "101 + 41", answer: 142},
+{question: "454 + 179", answer: 633},
+{question: "340 / 4", answer: 85},
+{question: "968 - 124", answer: 844},
+{question: "300 / 5", answer: 60},
+{question: "487 + 123", answer: 610},
+{question: "291 + 72", answer: 363},
+{question: "224 / 4", answer: 56},
+{question: "83 * 0", answer: 0},
+{question: "68 / 4", answer: 17},
+{question: "35 * 4", answer: 140},
+{question: "41 * 7", answer: 287},
+{question: "407 - 132", answer: 275},
+{question: "42 * 3", answer: 126},
+{question: "196 / 2", answer: 98},
+{question: "330 + 115", answer: 445},
+{question: "180 + 347", answer: 527},
+{question: "87 * 2", answer: 174},
+{question: "3 * 1", answer: 3},
+{question: "277 + 272", answer: 549},
+{question: "488 - 393", answer: 95},
+{question: "21 * 8", answer: 168},
+{question: "73 * 6", answer: 438},
+{question: "500 - 119", answer: 381},
+{question: "44 * 3", answer: 132},
+{question: "86 * 10", answer: 860},
+{question: "120 / 3", answer: 40},
+{question: "431 + 83", answer: 514},
+{question: "54 - 283", answer: -229},
+{question: "303 - 77", answer: 226},
+{question: "348 + 106", answer: 454},
+{question: "71 + 299", answer: 370},
+{question: "317 + 283", answer: 600},
+{question: "57 / 3", answer: 19},
+{question: "112 + 167", answer: 279},
+{question: "91 * 5", answer: 455},
+{question: "416 + 43", answer: 459},
+{question: "114 + 494", answer: 608},
+{question: "856 - 125", answer: 731},
+{question: "24 + 152", answer: 176},
+{question: "0 + 227", answer: 227},
+{question: "203 - 449", answer: -246},
+{question: "873 - 349", answer: 524},
+{question: "36 * 0", answer: 0},
+{question: "10 / 10", answer: 10},
+{question: "48 - 492", answer: -444},
+{question: "304 / 8", answer: 38},
+{question: "189 / 3", answer: 63},
+{question: "4 * 4", answer: 16},
+{question: "32 * 7", answer: 224},
+{question: "107 + 322", answer: 429},
+{question: "7 * 6", answer: 42},
+{question: "73 * 1", answer: 73},
+{question: "70 * 2", answer: 140},
+{question: "261 / 9", answer: 29},
+{question: "48 / 6", answer: 8},
+{question: "99 * 7", answer: 693},
+{question: "869 - 192", answer: 677},
+{question: "468 + 160", answer: 628},
+{question: "208 + 156", answer: 364},
+{question: "445 + 195", answer: 640},
+{question: "156 / 3", answer: 52},
+{question: "451 + 304", answer: 755},
+{question: "14 * 1", answer: 14},
+{question: "449 + 25", answer: 474},
+{question: "11 * 1", answer: 11},
+{question: "46 * 10", answer: 460},
+{question: "62 * 3", answer: 186},
+{question: "604 - 101", answer: 503},
+{question: "307 - 133", answer: 174},
+{question: "60 * 4", answer: 240},
+{question: "180 / 2", answer: 90},
+{question: "87 * 7", answer: 609},
+{question: "333 / 9", answer: 37},
+{question: "20 * 5", answer: 100},
+{question: "191 + 444", answer: 635},
+{question: "46 * 6", answer: 276},
+{question: "101 - 281", answer: -180},
+{question: "9 * 8", answer: 72},
+{question: "740 - 135", answer: 605},
+{question: "440 / 10", answer: 44},
+{question: "530 - 357", answer: 173},
+{question: "345 / 5", answer: 69},
+{question: "483 / 7", answer: 69},
+{question: "904 - 453", answer: 451},
+{question: "32 + 208", answer: 240},
+{question: "88 / 2", answer: 44},
+{question: "38 * 4", answer: 152},
+{question: "196 / 4", answer: 49},
+{question: "330 + 80", answer: 410},
+{question: "294 / 3", answer: 98},
+{question: "503 - 244", answer: 259},
+{question: "152 / 4", answer: 38},
+{question: "372 + 90", answer: 462},
+{question: "212 - 407", answer: -195},
+{question: "425 + 316", answer: 741},
+{question: "555 - 427", answer: 128},
+{question: "24 * 10", answer: 240},
+{question: "52 / 1", answer: 52},
+{question: "33 * 0", answer: 0},
+{question: "104 + 225", answer: 329},
+{question: "340 + 353", answer: 693},
+{question: "776 / 8", answer: 97},
+{question: "833 - 126", answer: 707},
+{question: "463 - 500", answer: -37},
+{question: "624 / 8", answer: 78},
+{question: "594 / 9", answer: 66},
+{question: "1 + 269", answer: 270},
+{question: "29 * 8", answer: 232},
+{question: "75 / 3", answer: 25},
+{question: "285 + 472", answer: 757},
+{question: "717 - 17", answer: 700},
+{question: "580 - 487", answer: 93},
+{question: "411 - 435", answer: -24},
+{question: "77 * 8", answer: 616},
+{question: "84 / 3", answer: 28},
+{question: "462 / 6", answer: 77},
+{question: "60 * 1", answer: 60},
+{question: "860 / 10", answer: 86},
+{question: "147 / 7", answer: 21},
+{question: "458 - 309", answer: 149},
+{question: "16 * 9", answer: 144},
+{question: "434 + 356", answer: 790},
+{question: "27 * 3", answer: 81},
+{question: "758 - 84", answer: 674},
+{question: "36 / 4", answer: 9},
+{question: "103 - 310", answer: -207},
+{question: "244 - 35", answer: 209},
+{question: "359 + 121", answer: 480},
+{question: "705 - 23", answer: 682},
+{question: "90 * 2", answer: 180},
+{question: "20 * 1", answer: 20},
+{question: "349 + 424", answer: 773},
+{question: "87 * 6", answer: 522},
+{question: "475 + 207", answer: 682},
+{question: "60 * 6", answer: 360},
+{question: "19 / 1", answer: 19},
+{question: "451 + 37", answer: 488},
+{question: "684 / 9", answer: 76},
+{question: "32 * 3", answer: 96},
+{question: "951 - 312", answer: 639},
+{question: "33 / 1", answer: 33},
+{question: "96 / 8", answer: 12},
+{question: "59 - 279", answer: -220},
+{question: "51 * 4", answer: 204},
+        
+];
+        
+let currentQuestionIndex = 0;
+let score = 0;
+let correctAnswers = 0;
+let mistakes = 0;
+let timer;
+let timeLeft = 300; 
+let answerTimeStart;
+    
+        window.onload = function() {
+            document.getElementById("start-game-btn").style.display = "block";
+            document.getElementById("game-box").style.display = "none";
+            document.getElementById("result-box").style.display = "none";
+        };
+        function shuffle(array) { 
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-    </script>   
+        }
+    
+        function startGame() {
+            document.getElementById("start-game-btn").style.display = "none";
+            document.getElementById("game-box").style.display = "block";
+            shuffle(questions); 
+            loadQuestion();
+            startTimer();
+        }
+    
+        function loadQuestion() {
+            const questionObj = questions[currentQuestionIndex];
+            document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
+            document.getElementById("input-answer").value ='';
+            answerTimeStart = new Date().getTime();
+            document.getElementById("input-answer").focus();
+        }
+    
+        document.getElementById("input-answer").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        });
+    
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("input-answer").value);
+            const correctAnswer = questions[currentQuestionIndex].answer;
+            const currentTime = new Date().getTime();
+            const answerTime = (currentTime - answerTimeStart) / 1000;
+    
+            if (userAnswer === correctAnswer) {
+                correctAnswers++;
+                if (answerTime <= 15) {
+                    score += 20;
+                } else {
+                    score += 10;
+                }
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    loadQuestion();
+                } else {
+                    endGame();
+                }
+            } else {
+                mistakes++;
+                score -= 10;
+                alert("Wrong answer! Try again.");
+                document.getElementById("input-answer").value = '' ;
+            }
+        }
+    
+        function startTimer() {
+            timer = setInterval(function() {
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                if (seconds < 10) seconds = "0" + seconds;
+                document.getElementById("time").innerText = `${minutes}:${seconds}`;
+    
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+        function endGame() {
+    clearInterval(timer); 
+    document.getElementById("game-box").style.display = "none"; 
+    const resultBox = document.getElementById("result-box"); 
+    resultBox.style.display = "block"; 
+
+    resultBox.innerHTML = `<h2>Game Over</h2>
+                           <p>Your Score: ${score}</p>
+                           <p>Correct Answers: ${correctAnswers}</p>
+                           <p>Mistakes: ${mistakes}</p>
+                           <button id="restart" onclick="restartGame()">Restart Game</button>`; 
+}
+function restartGame() {
+    currentQuestionIndex = 0; 
+    score = 0; 
+    correctAnswers = 0; 
+    mistakes = 0; 
+    timeLeft = 300; 
+    document.getElementById("result-box").style.display = "none"; 
+    startGame(); 
+}
+</script>
 </body>
 </html>
