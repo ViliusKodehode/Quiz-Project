@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Very Easy</title>
     <link rel="Stylesheet" href="/Mathstyles.css">
+    <script src="/Mathscript.js"></script>
 
 </head>
 <body>
-<h1>Very easy difficulty</h1>
-<p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
-<div id="start-box">
+<h1 class="animation">Very easy difficulty</h1>
+<p id="exit" class="animation" onclick="redirectToMainMenu()">Return to main meniu</p>
+<div id="start-box" class="animation">
     <button id="start-game-btn" onclick="startGame()">Start Game</button>
 </div>
 <div id="game-box">
@@ -23,282 +24,279 @@
 
     <div id="result-box"></div>
 <script>
-    function redirectToMainMenu() {
-        window.location.href = '../Mathhat.html';
-    }
-    const questions = [
-    { question: '9 + 3', answer: 12 },
-    { question: '12 - 4', answer: 8 },
-    { question: '9 + 10', answer: 19 },
-    { question: '18 + 2', answer: 20 },
-    { question: '50 - 25', answer: 25 },
-    { question: '15 + 20', answer: 35 },
-    { question: '70 - 30', answer: 40 },
-    { question: '33 + 44', answer: 77 },
-    { question: '80 - 10', answer: 70 },
-    { question: '45 + 22', answer: 67 },
-    { question: '95 - 30', answer: 65 },
-    { question: '16 + 17', answer: 33 },
-    { question: '81 - 41', answer: 40 },
-    { question: '25 + 15', answer: 40 },
-    { question: '100 - 99', answer: 1 },
-    { question: '48 + 2', answer: 50 },
-    { question: '99 - 49', answer: 50 },
-    { question: '37 + 22', answer: 59 },
-    { question: '65 - 20', answer: 45 },
-    { question: '15 + 60', answer: 75 },
-    { question: '88 - 50', answer: 38 },
-    { question: '23 + 47', answer: 70 },
-    { question: '61 - 11', answer: 50 },
-    { question: '17 + 31', answer: 48 },
-    { question: '55 - 10', answer: 45 },
-    { question: '26 + 35', answer: 61 },
-    { question: '76 - 50', answer: 26 },
-    { question: '60 + 12', answer: 72 },
-    { question: '85 - 28', answer: 57 },
-    { question: '40 + 58', answer: 98 },
-    { question: '95 - 25', answer: 70 },
-    { question: '36 + 49', answer: 85 },
-    { question: '78 - 18', answer: 60 },
-    { question: '23 + 77', answer: 100 },
-    { question: '91 - 51', answer: 40 },
-    { question: '34 + 12', answer: 46 },
-    { question: '60 - 10', answer: 50 },
-    { question: '67 + 15', answer: 82 },
-    { question: '82 - 33', answer: 49 },
-    { question: '24 + 75', answer: 99 },
-    { question: '92 - 42', answer: 50 },
-    { question: '35 + 30', answer: 65 },
-    { question: '79 - 28', answer: 51 },
-    { question: '18 + 14', answer: 32 },
-    { question: '77 - 20', answer: 57 },
-    { question: '32 + 67', answer: 99 },
-    { question: '84 - 44', answer: 40 },
-    { question: '19 + 80', answer: 99 },
-    { question: '89 - 37', answer: 52 },
-    { question: '25 + 40', answer: 65 },
-    { question: '100 - 50', answer: 50 },
-    { question: '31 + 29', answer: 60 },
-    { question: '65 - 34', answer: 31 },
-    { question: '53 + 42', answer: 95 },
-    { question: '77 - 29', answer: 48 },
-    { question: '39 + 60', answer: 99 },
-    { question: '90 - 10', answer: 80 },
-    { question: '28 + 12', answer: 40 },
-    { question: '56 - 15', answer: 41 },
-    { question: '66 + 21', answer: 87 },
-    { question: '88 - 40', answer: 48 },
-    { question: '22 + 13', answer: 35 },
-    { question: '50 - 23', answer: 27 },
-    { question: '19 + 50', answer: 69 },
-    { question: '91 - 50', answer: 41 },
-    { question: '30 + 28', answer: 58 },
-    { question: '60 - 22', answer: 38 },
-    { question: '45 + 15', answer: 60 },
-    { question: '83 - 42', answer: 41 },
-    { question: '28 + 61', answer: 89 },
-    { question: '78 - 28', answer: 50 },
-    { question: '10 + 37', answer: 47 },
-    { question: '85 - 35', answer: 50 },
-    { question: '58 + 17', answer: 75 },
-    { question: '76 - 30', answer: 46 },
-    { question: '47 + 40', answer: 87 },
-    { question: '92 - 29', answer: 63 },
-    { question: '29 + 22', answer: 51 },
-    { question: '63 - 17', answer: 46 },
-    { question: '11 + 18', answer: 29 },
-    { question: '56 - 10', answer: 46 },
-    { question: '17 + 13', answer: 30 },
-    { question: '60 - 30', answer: 30 },
-    { question: '50 + 40', answer: 90 },
-    { question: '85 - 44', answer: 41 },
-    { question: '24 + 71', answer: 95 },
-    { question: '97 - 57', answer: 40 },
-    { question: '26 + 32', answer: 58 },
-    { question: '65 - 22', answer: 43 },
-    { question: '23 + 68', answer: 91 },
-    { question: '77 - 36', answer: 41 },
-    { question: '14 + 25', answer: 39 },
-    { question: '98 - 45', answer: 53 },
-    { question: '49 + 38', answer: 87 },
-    { question: '69 - 24', answer: 45 },
-    { question: '15 + 61', answer: 76 },
-    { question: '100 - 50', answer: 50 },
-    { question: '35 + 47', answer: 82 },
-    { question: '80 - 30', answer: 50 },
-    { question: '12 + 87', answer: 99 },
-    { question: '61 - 30', answer: 31 },
-    { question: '43 + 54', answer: 97 },
-    { question: '58 - 19', answer: 39 },
-    { question: '21 + 44', answer: 65 },
-    { question: '94 - 50', answer: 44 },
-    { question: '49 + 49', answer: 98 },
-    { question: '88 - 37', answer: 51 },
-    { question: '32 + 21', answer: 53 },
-    { question: '90 - 42', answer: 48 },
-    { question: '60 + 37', answer: 97 },
-    { question: '73 - 23', answer: 50 },
-    { question: '40 + 40', answer: 80 },
-    { question: '55 - 14', answer: 41 },
-    { question: '42 + 50', answer: 92 },
-    { question: '95 - 43', answer: 52 },
-    { question: '10 + 85', answer: 95 },
-    { question: '81 - 44', answer: 37 },
-    { question: '37 + 51', answer: 88 },
-    { question: '66 - 40', answer: 26 },
-    { question: '20 + 71', answer: 91 },
-    { question: '91 - 50', answer: 41 },
-    { question: '36 + 63', answer: 99 },
-    { question: '99 - 68', answer: 31 },
-    { question: '30 + 28', answer: 58 },
-    { question: '64 - 17', answer: 47 },
-    { question: '25 + 66', answer: 91 },
-    { question: '88 - 49', answer: 39 },
-    { question: '44 + 55', answer: 99 },
-    { question: '70 - 20', answer: 50 },
-    { question: '31 + 44', answer: 75 },
-    { question: '97 - 56', answer: 41 },
-    { question: '55 + 40', answer: 95 },
-    { question: '72 - 21', answer: 51 },
-    { question: '60 + 15', answer: 75 },
-    { question: '79 - 38', answer: 41 },
-    { question: '20 + 53', answer: 73 },
-    { question: '83 - 46', answer: 37 },
-    { question: '16 + 81', answer: 97 },
-    { question: '99 - 47', answer: 52 }
-    
-    ];
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let correctAnswers = 0;
-    let mistakes = 0;
-    let timer;
-    let timeLeft = 300; 
-    let answerTimeStart;
+const questions = [
+{ question: '9 + 3', answer: 12 },
+{ question: '12 - 4', answer: 8 },
+{ question: '9 + 10', answer: 19 },
+{ question: '18 + 2', answer: 20 },
+{ question: '50 - 25', answer: 25 },
+{ question: '15 + 20', answer: 35 },
+{ question: '70 - 30', answer: 40 },
+{ question: '33 + 44', answer: 77 },
+{ question: '80 - 10', answer: 70 },
+{ question: '45 + 22', answer: 67 },
+{ question: '95 - 30', answer: 65 },
+{ question: '16 + 17', answer: 33 },
+{ question: '81 - 41', answer: 40 },
+{ question: '25 + 15', answer: 40 },
+{ question: '100 - 99', answer: 1 },
+{ question: '48 + 2', answer: 50 },
+{ question: '99 - 49', answer: 50 },
+{ question: '37 + 22', answer: 59 },
+{ question: '65 - 20', answer: 45 },
+{ question: '15 + 60', answer: 75 },
+{ question: '88 - 50', answer: 38 },
+{ question: '23 + 47', answer: 70 },
+{ question: '61 - 11', answer: 50 },
+{ question: '17 + 31', answer: 48 },
+{ question: '55 - 10', answer: 45 },
+{ question: '26 + 35', answer: 61 },
+{ question: '76 - 50', answer: 26 },
+{ question: '60 + 12', answer: 72 },
+{ question: '85 - 28', answer: 57 },
+{ question: '40 + 58', answer: 98 },
+{ question: '95 - 25', answer: 70 },
+{ question: '36 + 49', answer: 85 },
+{ question: '78 - 18', answer: 60 },
+{ question: '23 + 77', answer: 100 },
+{ question: '91 - 51', answer: 40 },
+{ question: '34 + 12', answer: 46 },
+{ question: '60 - 10', answer: 50 },
+{ question: '67 + 15', answer: 82 },
+{ question: '82 - 33', answer: 49 },
+{ question: '24 + 75', answer: 99 },
+{ question: '92 - 42', answer: 50 },
+{ question: '35 + 30', answer: 65 },
+{ question: '79 - 28', answer: 51 },
+{ question: '18 + 14', answer: 32 },
+{ question: '77 - 20', answer: 57 },
+{ question: '32 + 67', answer: 99 },
+{ question: '84 - 44', answer: 40 },
+{ question: '19 + 80', answer: 99 },
+{ question: '89 - 37', answer: 52 },
+{ question: '25 + 40', answer: 65 },
+{ question: '100 - 50', answer: 50 },
+{ question: '31 + 29', answer: 60 },
+{ question: '65 - 34', answer: 31 },
+{ question: '53 + 42', answer: 95 },
+{ question: '77 - 29', answer: 48 },
+{ question: '39 + 60', answer: 99 },
+{ question: '90 - 10', answer: 80 },
+{ question: '28 + 12', answer: 40 },
+{ question: '56 - 15', answer: 41 },
+{ question: '66 + 21', answer: 87 },
+{ question: '88 - 40', answer: 48 },
+{ question: '22 + 13', answer: 35 },
+{ question: '50 - 23', answer: 27 },
+{ question: '19 + 50', answer: 69 },
+{ question: '91 - 50', answer: 41 },
+{ question: '30 + 28', answer: 58 },
+{ question: '60 - 22', answer: 38 },
+{ question: '45 + 15', answer: 60 },
+{ question: '83 - 42', answer: 41 },
+{ question: '28 + 61', answer: 89 },
+{ question: '78 - 28', answer: 50 },
+{ question: '10 + 37', answer: 47 },
+{ question: '85 - 35', answer: 50 },
+{ question: '58 + 17', answer: 75 },
+{ question: '76 - 30', answer: 46 },
+{ question: '47 + 40', answer: 87 },
+{ question: '92 - 29', answer: 63 },
+{ question: '29 + 22', answer: 51 },
+{ question: '63 - 17', answer: 46 },
+{ question: '11 + 18', answer: 29 },
+{ question: '56 - 10', answer: 46 },
+{ question: '17 + 13', answer: 30 },
+{ question: '60 - 30', answer: 30 },
+{ question: '50 + 40', answer: 90 },
+{ question: '85 - 44', answer: 41 },
+{ question: '24 + 71', answer: 95 },
+{ question: '97 - 57', answer: 40 },
+{ question: '26 + 32', answer: 58 },
+{ question: '65 - 22', answer: 43 },
+{ question: '23 + 68', answer: 91 },
+{ question: '77 - 36', answer: 41 },
+{ question: '14 + 25', answer: 39 },
+{ question: '98 - 45', answer: 53 },
+{ question: '49 + 38', answer: 87 },
+{ question: '69 - 24', answer: 45 },
+{ question: '15 + 61', answer: 76 },
+{ question: '100 - 50', answer: 50 },
+{ question: '35 + 47', answer: 82 },
+{ question: '80 - 30', answer: 50 },
+{ question: '12 + 87', answer: 99 },
+{ question: '61 - 30', answer: 31 },
+{ question: '43 + 54', answer: 97 },
+{ question: '58 - 19', answer: 39 },
+{ question: '21 + 44', answer: 65 },
+{ question: '94 - 50', answer: 44 },
+{ question: '49 + 49', answer: 98 },
+{ question: '88 - 37', answer: 51 },
+{ question: '32 + 21', answer: 53 },
+{ question: '90 - 42', answer: 48 },
+{ question: '60 + 37', answer: 97 },
+{ question: '73 - 23', answer: 50 },
+{ question: '40 + 40', answer: 80 },
+{ question: '55 - 14', answer: 41 },
+{ question: '42 + 50', answer: 92 },
+{ question: '95 - 43', answer: 52 },
+{ question: '10 + 85', answer: 95 },
+{ question: '81 - 44', answer: 37 },
+{ question: '37 + 51', answer: 88 },
+{ question: '66 - 40', answer: 26 },
+{ question: '20 + 71', answer: 91 },
+{ question: '91 - 50', answer: 41 },
+{ question: '36 + 63', answer: 99 },
+{ question: '99 - 68', answer: 31 },
+{ question: '30 + 28', answer: 58 },
+{ question: '64 - 17', answer: 47 },
+{ question: '25 + 66', answer: 91 },
+{ question: '88 - 49', answer: 39 },
+{ question: '44 + 55', answer: 99 },
+{ question: '70 - 20', answer: 50 },
+{ question: '31 + 44', answer: 75 },
+{ question: '97 - 56', answer: 41 },
+{ question: '55 + 40', answer: 95 },
+{ question: '72 - 21', answer: 51 },
+{ question: '60 + 15', answer: 75 },
+{ question: '79 - 38', answer: 41 },
+{ question: '20 + 53', answer: 73 },
+{ question: '83 - 46', answer: 37 },
+{ question: '16 + 81', answer: 97 },
+{ question: '99 - 47', answer: 52 }
 
-    window.onload = function() {
-        document.getElementById("start-game-btn").style.display = "block";
-        document.getElementById("game-box").style.display = "none";
-        document.getElementById("result-box").style.display = "none";
-    };
-    function shuffle(array) { 
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    }
+];
 
-    function startGame() {
-        document.getElementById("start-game-btn").style.display = "none";
-        document.getElementById("game-box").style.display = "block";
-        shuffle(questions); 
-        loadQuestion();
-        startTimer();
-    }
+let currentQuestionIndex = 0;
+let score = 0;
+let correctAnswers = 0;
+let mistakes = 0;
+let timer;
+let timeLeft = 300; 
+let answerTimeStart;
 
-    function loadQuestion() {
-        const questionObj = questions[currentQuestionIndex];
-        document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
-        document.getElementById("input-answer").value = '';
-        answerTimeStart = new Date().getTime();
-        document.getElementById("input-answer").focus();
-    }
+window.onload = function() {
+document.getElementById("start-game-btn").style.display = "block";
+document.getElementById("game-box").style.display = "none";
+document.getElementById("result-box").style.display = "none";
+};
+function shuffle(array) { 
+for (let i = array.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+[array[i], array[j]] = [array[j], array[i]];
+}
+}
+function startGame() {
+document.getElementById("start-game-btn").style.display = "none";
+document.getElementById("game-box").style.display = "block";
+shuffle(questions); 
+loadQuestion();
+startTimer();
+}
 
-    document.getElementById("input-answer").addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            checkAnswer();
-        }
-    });
+function loadQuestion() {
+const questionObj = questions[currentQuestionIndex];
+document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
+document.getElementById("input-answer").value = '';
+answerTimeStart = new Date().getTime();
+document.getElementById("input-answer").focus();
+}
 
-    function checkAnswer() {
-        const userAnswer = parseInt(document.getElementById("input-answer").value);
-        const correctAnswer = questions[currentQuestionIndex].answer;
-        const currentTime = new Date().getTime();
-        const answerTime = (currentTime - answerTimeStart) / 1000;
+document.getElementById("input-answer").addEventListener("keyup", function(event) {
+if (event.key === "Enter") {
+checkAnswer();
+}
+});
 
-        if (userAnswer === correctAnswer) {
-            correctAnswers++;
-            if (answerTime <= 15) {
-                score += 10;
-            } else {
-                score += 5;
-            }
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                loadQuestion();
-            } else {
-                endGame();
-            }
-        } else {
-            mistakes++;
-            score -= 5;
-            alert("Wrong answer! Try again.");
-            document.getElementById("input-answer").value = '';
-        }
-    }
+function checkAnswer() {
+const userAnswer = parseInt(document.getElementById("input-answer").value);
+const correctAnswer = questions[currentQuestionIndex].answer;
+const currentTime = new Date().getTime();
+const answerTime = (currentTime - answerTimeStart) / 1000;
 
-    function startTimer() {
-        timer = setInterval(function() {
-            timeLeft--;
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
-            if (seconds < 10) seconds = "0" + seconds;
-            document.getElementById("time").innerText = `${minutes}:${seconds}`;
+if (userAnswer === correctAnswer) {
+correctAnswers++;
+if (answerTime <= 15) {
+score += 10;
+} else {
+score += 5;
+}
+currentQuestionIndex++;
+if (currentQuestionIndex < questions.length) {
+loadQuestion();
+} else {
+endGame();
+}
+} else {
+mistakes++;
+score -= 5;
+alert("Wrong answer! Try again.");
+document.getElementById("input-answer").value = '';
+}
+}
 
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                endGame();
-            }
-        }, 1000);
-    }
+function startTimer() {
+timer = setInterval(function() {
+timeLeft--;
+let minutes = Math.floor(timeLeft / 60);
+let seconds = timeLeft % 60;
+if (seconds < 10) seconds = "0" + seconds;
+document.getElementById("time").innerText = `${minutes}:${seconds}`;
 
-    function endGame() {
-        clearInterval(timer);
-        document.getElementById("game-box").style.display = "none";
-        document.getElementById("result-box").style.display = "block";
+if (timeLeft <= 0) {
+clearInterval(timer);
+endGame();
+}
+}, 1000);
+}
 
-        document.getElementById("result-box").innerHTML = `
-            <p style= "color:red; font-family: fantasy; font-size: 28px">Game Over!</p>
-            <p>Correct answers: ${correctAnswers}</p>
-            <p>Mistakes made: ${mistakes}</p>
-            <p>Total score: ${score}</p>
-        `;
-    }
-    function startTimer() {
-            timer = setInterval(function() {
-                timeLeft--;
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                if (seconds < 10) seconds = "0" + seconds;
-                document.getElementById("time").innerText = `${minutes}:${seconds}`;
-    
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    endGame();
-                }
-            }, 1000);
-        }
-        function endGame() {
-    clearInterval(timer); 
-    document.getElementById("game-box").style.display = "none"; 
-    const resultBox = document.getElementById("result-box"); 
-    resultBox.style.display = "block"; 
+function endGame() {
+clearInterval(timer);
+document.getElementById("game-box").style.display = "none";
+document.getElementById("result-box").style.display = "block";
 
-    resultBox.innerHTML = `<h2>Game Over</h2>
-                           <p>Your Score: ${score}</p>
-                           <p>Correct Answers: ${correctAnswers}</p>
-                           <p>Mistakes: ${mistakes}</p>
-                           <button id="restart" onclick="restartGame()">Restart Game</button>`; 
+document.getElementById("result-box").innerHTML = `
+<p style= "color:red; font-family: fantasy; font-size: 28px">Game Over!</p>
+<p>Correct answers: ${correctAnswers}</p>
+<p>Mistakes made: ${mistakes}</p>
+<p>Total score: ${score}</p>
+`;
+}
+function startTimer() {
+timer = setInterval(function() {
+timeLeft--;
+let minutes = Math.floor(timeLeft / 60);
+let seconds = timeLeft % 60;
+if (seconds < 10) seconds = "0" + seconds;
+document.getElementById("time").innerText = `${minutes}:${seconds}`;
+
+if (timeLeft <= 0) {
+clearInterval(timer);
+endGame();
+}
+}, 1000);
+}
+function endGame() {
+clearInterval(timer); 
+document.getElementById("game-box").style.display = "none"; 
+const resultBox = document.getElementById("result-box"); 
+resultBox.style.display = "block"; 
+
+resultBox.innerHTML = `<h2>Game Over</h2>
+<p>Your Score: ${score}</p>
+<p>Correct Answers: ${correctAnswers}</p>
+<p>Mistakes: ${mistakes}</p>
+<button id="restart" onclick="restartGame()">Restart Game</button>`; 
 }
 
 function restartGame() {
-    currentQuestionIndex = 0; 
-    score = 0; 
-    correctAnswers = 0; 
-    mistakes = 0; 
-    timeLeft = 300; 
-    document.getElementById("result-box").style.display = "none"; 
-    startGame(); 
+currentQuestionIndex = 0; 
+score = 0; 
+correctAnswers = 0; 
+mistakes = 0; 
+timeLeft = 300; 
+document.getElementById("result-box").style.display = "none"; 
+startGame(); 
 }
 </script>
 </body>

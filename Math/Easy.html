@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy difficulty</title>
     <link rel="Stylesheet" href="/Mathstyles.css">
+    <script src="/Mathscript.js"></script>
 
 </head>
 <body>
-<h1>Easy difficulty</h1>
-<p id="exit" onclick="redirectToMainMenu()">Return to main meniu</p>
+<h1 class="animation">Easy difficulty</h1>
+<p id="exit"class="animation" onclick="redirectToMainMenu()">Return to main meniu</p>
 <div id="start-box">
-    <button id="start-game-btn" onclick="startGame()">Start Game</button>
+    <button id="start-game-btn"class="animation" onclick="startGame()">Start Game</button>
 </div>
 <div id="game-box">
     <br>
@@ -24,9 +25,6 @@
 
     <div id="result-box"></div>
 <script>
-function redirectToMainMenu() {
-    window.location.href = '../Mathhat.html';
-    }
 const questions = [
 {question: '11 + 24', answer: 35},
 {question: '54 - 19', answer: 35},
@@ -154,9 +152,9 @@ const questions = [
 {question: '123 + 77', answer: 200},
 {question: '194 - 113', answer: 81},
 {question: '13 * 12', answer: 156},
-        
+
 ];
-        
+
 let currentQuestionIndex = 0;
 let score = 0;
 let correctAnswers = 0;
@@ -164,103 +162,103 @@ let mistakes = 0;
 let timer;
 let timeLeft = 300; 
 let answerTimeStart;
-    
-        window.onload = function() {
-            document.getElementById("start-game-btn").style.display = "block";
-            document.getElementById("game-box").style.display = "none";
-            document.getElementById("result-box").style.display = "none";
-        };
-        function shuffle(array) { 
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        }
-    
-        function startGame() {
-            document.getElementById("start-game-btn").style.display = "none";
-            document.getElementById("game-box").style.display = "block";
-            shuffle(questions); 
-            loadQuestion();
-            startTimer();
-        }
-    
-        function loadQuestion() {
-            const questionObj = questions[currentQuestionIndex];
-            document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
-            document.getElementById("input-answer").value = '';
-            answerTimeStart = new Date().getTime();
-            document.getElementById("input-answer").focus();
-        }
-    
-        document.getElementById("input-answer").addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
-        });
-    
-        function checkAnswer() {
-            const userAnswer = parseInt(document.getElementById("input-answer").value);
-            const correctAnswer = questions[currentQuestionIndex].answer;
-            const currentTime = new Date().getTime();
-            const answerTime = (currentTime - answerTimeStart) / 1000;
-    
-            if (userAnswer === correctAnswer) {
-                correctAnswers++;
-                if (answerTime <= 15) {
-                    score += 20;
-                } else {
-                    score += 10;
-                }
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    loadQuestion();
-                } else {
-                    endGame();
-                }
-            } else {
-                mistakes++;
-                score -= 10;
-                alert("Wrong answer! Try again.");
-                document.getElementById("input-answer").value = '';
-            }
-        }
-    
-        function startTimer() {
-            timer = setInterval(function() {
-                timeLeft--;
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                if (seconds < 10) seconds = "0" + seconds;
-                document.getElementById("time").innerText = `${minutes}:${seconds}`;
-    
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    endGame();
-                }
-            }, 1000);
-        }
-        function endGame() {
-    clearInterval(timer); 
-    document.getElementById("game-box").style.display = "none"; 
-    const resultBox = document.getElementById("result-box"); 
-    resultBox.style.display = "block"; 
 
-    resultBox.innerHTML = `<h2>Game Over</h2>
-                           <p>Your Score: ${score}</p>
-                           <p>Correct Answers: ${correctAnswers}</p>
-                           <p>Mistakes: ${mistakes}</p>
-                           <button id="restart" onclick="restartGame()">Restart Game</button>`; 
+window.onload = function() {
+document.getElementById("start-game-btn").style.display = "block";
+document.getElementById("game-box").style.display = "none";
+document.getElementById("result-box").style.display = "none";
+};
+function shuffle(array) { 
+for (let i = array.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+[array[i], array[j]] = [array[j], array[i]];
+}
+}
+
+function startGame() {
+document.getElementById("start-game-btn").style.display = "none";
+document.getElementById("game-box").style.display = "block";
+shuffle(questions); 
+loadQuestion();
+startTimer();
+}
+
+function loadQuestion() {
+const questionObj = questions[currentQuestionIndex];
+document.getElementById("question-box").innerText = `Question: ${questionObj.question}`;
+document.getElementById("input-answer").value = '';
+answerTimeStart = new Date().getTime();
+document.getElementById("input-answer").focus();
+}
+
+document.getElementById("input-answer").addEventListener("keyup", function(event) {
+if (event.key === "Enter") {
+checkAnswer();
+}
+});
+
+function checkAnswer() {
+const userAnswer = parseInt(document.getElementById("input-answer").value);
+const correctAnswer = questions[currentQuestionIndex].answer;
+const currentTime = new Date().getTime();
+const answerTime = (currentTime - answerTimeStart) / 1000;
+
+if (userAnswer === correctAnswer) {
+correctAnswers++;
+if (answerTime <= 15) {
+score += 20;
+} else {
+score += 10;
+}
+currentQuestionIndex++;
+if (currentQuestionIndex < questions.length) {
+loadQuestion();
+} else {
+endGame();
+}
+} else {
+mistakes++;
+score -= 10;
+alert("Wrong answer! Try again.");
+document.getElementById("input-answer").value = '';
+}
+}
+
+function startTimer() {
+timer = setInterval(function() {
+timeLeft--;
+let minutes = Math.floor(timeLeft / 60);
+let seconds = timeLeft % 60;
+if (seconds < 10) seconds = "0" + seconds;
+document.getElementById("time").innerText = `${minutes}:${seconds}`;
+
+if (timeLeft <= 0) {
+clearInterval(timer);
+endGame();
+}
+}, 1000);
+}
+function endGame() {
+clearInterval(timer); 
+document.getElementById("game-box").style.display = "none"; 
+const resultBox = document.getElementById("result-box"); 
+resultBox.style.display = "block"; 
+
+resultBox.innerHTML = `<h2>Game Over</h2>
+<p>Your Score: ${score}</p>
+<p>Correct Answers: ${correctAnswers}</p>
+<p>Mistakes: ${mistakes}</p>
+<button id="restart" onclick="restartGame()">Restart Game</button>`; 
 }
 
 function restartGame() {
-    currentQuestionIndex = 0; 
-    score = 0; 
-    correctAnswers = 0; 
-    mistakes = 0; 
-    timeLeft = 300; 
-    document.getElementById("result-box").style.display = "none"; 
-    startGame(); 
+currentQuestionIndex = 0; 
+score = 0; 
+correctAnswers = 0; 
+mistakes = 0; 
+timeLeft = 300; 
+document.getElementById("result-box").style.display = "none"; 
+startGame(); 
 }
 </script>
 </body>

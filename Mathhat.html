@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="Stylesheet" href="Mathstyles.css">
+    <script src="Mathscript.js"></script>
 </head>
 <body>
     <h1>Choose your difficulty</h1>
@@ -23,109 +24,109 @@
 
 
 <script>
-        document.getElementById("difficulty").addEventListener("change", function() {
-            var difficulty = this.value;
+document.getElementById("difficulty").addEventListener("change", function() {
+var difficulty = this.value;
 
-            var customText = "";
-            if (difficulty === "Very easy") {
-                customText = `
-                    <div style="background-color: white; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Very easy difficulty includes:</span>
-                        <br>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
-                    </div>
-                `;
-            } else if (difficulty === "Easy") {
-                customText = `
-                    <div style="background-color: white; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Easy difficulty includes:</span>
-                        <br>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
-                    </div>
-                `;
-            } else if (difficulty === "Medium") {
-                customText = `
-                    <div style="background-color: white; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Medium difficulty includes:</span>
-                        <br>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
-                    </div>
-                `;
-            } else if (difficulty === "Hard") {
-                customText = `
-                    <div style="background-color: white; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Hard difficulty includes:</span>
-                        <br>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
-                    </div>
-                `;
-            } else if (difficulty === "Insane") {
-                customText = `
-                    <div style="background-color: white; padding: 10px;">
-                        <span style="font-size: 36px; color: black;font-family:Fantasy;">Insane difficulty includes:</span>
-                        <br>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
-                        <br>
-                         <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
-                        <br>
-                        <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Percentage</span>
-                    </div>
-                `;
-            }
-            document.getElementById("displayText").innerHTML = customText;
-        });
-        document.getElementById("confirmbutton").addEventListener("click", function(){
-            var difficulty = document.getElementById("difficulty").value;
+var customText = "";
+if (difficulty === "Very easy") {
+    customText = `
+        <div style="background-color: white; padding: 10px;">
+            <span style="font-size: 36px; color: black;font-family:Fantasy;">Very easy difficulty includes:</span>
+            <br>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+        </div>
+    `;
+} else if (difficulty === "Easy") {
+    customText = `
+        <div style="background-color: white; padding: 10px;">
+            <span style="font-size: 36px; color: black;font-family:Fantasy;">Easy difficulty includes:</span>
+            <br>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+        </div>
+    `;
+} else if (difficulty === "Medium") {
+    customText = `
+        <div style="background-color: white; padding: 10px;">
+            <span style="font-size: 36px; color: black;font-family:Fantasy;">Medium difficulty includes:</span>
+            <br>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+        </div>
+    `;
+} else if (difficulty === "Hard") {
+    customText = `
+        <div style="background-color: white; padding: 10px;">
+            <span style="font-size: 36px; color: black;font-family:Fantasy;">Hard difficulty includes:</span>
+            <br>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
+        </div>
+    `;
+} else if (difficulty === "Insane") {
+    customText = `
+        <div style="background-color: white; padding: 10px;">
+            <span style="font-size: 36px; color: black;font-family:Fantasy;">Insane difficulty includes:</span>
+            <br>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Substraction</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Addition</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Multiplication</span>
+            <br>
+                <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Divide</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Problem solving</span>
+            <br>
+            <span style="font-size: 22px; color: black;font-family:Times New Roman;">∙ Percentage</span>
+        </div>
+    `;
+}
+document.getElementById("displayText").innerHTML = customText;
+});
+document.getElementById("confirmbutton").addEventListener("click", function(){
+var difficulty = document.getElementById("difficulty").value;
 
-            var redirectPage = "";
-            if (difficulty === "Very easy") {
-                redirectPage = "Math/Very-easy.html";
-            }else if (difficulty === "Easy") {
-                redirectPage = "Math/Easy.html";
-            }else if (difficulty === "Medium") {
-                redirectPage = "Math/Medium.html";
-            }else if (difficulty === "Hard") {
-                redirectPage = "Math/Hard.html";
-            }else if (difficulty === "Insane") {
-                redirectPage = "Math/Insane.html";
-            }
-             if (redirectPage) {
-                window.location.href = redirectPage;
-            }
-        });     
-        document.getElementById("difficulty").value = "Very easy";
-        document.getElementById("difficulty").dispatchEvent(new Event("change"));
+var redirectPage = "";
+if (difficulty === "Very easy") {
+    redirectPage = "Math/Very-easy.html";
+}else if (difficulty === "Easy") {
+    redirectPage = "Math/Easy.html";
+}else if (difficulty === "Medium") {
+    redirectPage = "Math/Medium.html";
+}else if (difficulty === "Hard") {
+    redirectPage = "Math/Hard.html";
+}else if (difficulty === "Insane") {
+    redirectPage = "Math/Insane.html";
+}
+    if (redirectPage) {
+    window.location.href = redirectPage;
+}
+});     
+document.getElementById("difficulty").value = "Very easy";
+document.getElementById("difficulty").dispatchEvent(new Event("change"));
 </script>
  </body>  
 </html>

@@ -130,3 +130,24 @@ p.exit {
     text-align: center;
     border-radius: 15px; 
 }
+.animation {
+    animation-name: shutter-in-top;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;       
+}
+@keyframes shutter-in-top {
+    0% {
+        transform:rotateX(-100deg);
+        transform-origin:top;
+        opacity:0;
+    }
+    100% {
+        transform:rotateX(0deg);
+        transform-origin:top;
+        opacity:1;
+    }
+}
